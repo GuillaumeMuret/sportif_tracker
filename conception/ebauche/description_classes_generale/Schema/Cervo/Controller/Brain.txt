@@ -1,0 +1,85 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+	- Brain()
+	+ getInstance() : Brain
+	+ manageActions(ArrayList<ActionForBrain>) : void
+	+ onTcpAnchorConnected() : void
+	+ onTcpAnchorDisconnection() : void
+	+ onTcpAnchorFailed() : void
+	+ onTcpMaestroConnected() : void
+	+ onTcpMaestroDisconnection() : void
+	+ getTcpAnchorCommunication() : TcpAnchorCommunication
+	+ getArmbandCommunication() : ArmbandCommunication
+	+ getMaestroCommunication() : MaestroCommunication
+	+ getWatchdogsTag() : HashMap<String, Timer>
+	+ getWatchdogArmband() : HashMap<String, Timer>
+	+ getTimerMaestroConnection() : Timer
+	+ setTimerMaestroConnection(Timer) : void
+	+ isSavingData() : boolean
+	+ setSavingData(boolean) : void
+	- tcpAnchorCommunication : TcpAnchorCommunication
+	- udpAnchorCommunication : UdpAnchorCommunication
+	- savingData : boolean
+	- armbandCommunication : ArmbandCommunication 
+	- maestroCommunication : MaestroCommunication
+	- watchdogsTag : HashMap<String, Timer>
+	- watchdogArmband : HashMap<String, Timer>
+	- timerMaestroConnection : Timer
+	- actionsForBrain : HashMap<String, IActionForBrain>
+	- instance : Brain
+}
+
+interface ICommunicationState {
+	+ onTcpAnchorConnected() : void
+	+ onTcpAnchorDisconnection() : void
+	+ onTcpAnchorFailed() : void
+	+ onTcpMaestroConnected() : void
+	+ onTcpMaestroDisconnection() : void
+}
+
+
+
+class MaestroCommunication <<S, Singleton>> {
+	
+}
+
+class ArmbandCommunication <<S, Singleton>> {
+	
+}
+
+class TcpAnchorCommunication <<S, Singleton>> {
+	
+}
+
+class UdpAnchorCommunication <<S, Singleton>> {
+	
+}
+
+abstract AbstractActionForBrain{
+	+ AbstractActionForBrain(Brain)
+	# brain : Brain
+}
+
+interface IActionForBrain {
+	+ execute(String[]) : void
+}
+
+Brain .. ICommunicationState
+MaestroCommunication -- ICommunicationState
+TcpAnchorCommunication -- ICommunicationState
+UdpAnchorCommunication -- ICommunicationState
+
+Brain --"*" AbstractActionForBrain
+
+AbstractActionForBrain .. IActionForBrain
+
+AbstractActionForBrain <|-- ActionAskListTagAndAnchors
+AbstractActionForBrain <|-- ActionInitAnchorsAndPosition
+
+Brain -- MaestroCommunication
+Brain -- TcpAnchorCommunication
+Brain -- UdpAnchorCommunication
+Brain -- ArmbandCommunication
+
+@enduml

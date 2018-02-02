@@ -1,0 +1,51 @@
+
+********* Plan Présentation Poster ***********
+
+
+ I - Contexte du projet 
+
+    1. Présentation FFRS et équipe de France de Roller Hockey [Angela]
+
+        - Fédération française de roller hockey et l'équipe championne du monde en 2017. Sport se jouant en salle spécialemment équipée pour cette pratique.
+
+    2. Présentation rapide de notre client et de ses besoins [Benoit]
+
+        - Geoffroy Tijou, entraineur de l'équipe de France. 
+    
+        Besoins : 
+
+        Constituer une base de données de ses joueurs lors de différentes activités qu'il sera amené à réaliser (préparation physique, entrainement, match, etc...).
+        Cette BDD va permettre une interprétation des états physiques de ses joueurs pour affiner leur stratégie et être assuré de la bonne condition physique de 
+        tous leurs joueurs 
+
+
+    3. Présentation de l'équipe et du projet global [François]
+
+        - 6 étudiants d'options différentes deux en SE Marc et Guillaumme, deux en option OC Benoit Ladrange et Angela Randolph, un étudiant d'option BIO
+        Antoine de Pouilly et enfin moi-même, François d'Hotelans en option LD. En plus de cette équipe, une équipe de 12 I1 est rattachée à notre équipe et avec qui
+        nous collaborons depuis le début du projet. Il reprendront notre suite à la fin du PFE poyr des premiers tests expérimentaux en mars.
+
+
+        - Projet :
+
+        Le projet s'est articuler en plusieurs phases
+        Déterminer les technologies, écrire les spécifications, une phase de conception du système.
+        Adapter les techno dans notre projet en fonction de résultats à obtenir.
+        Architecturer un système le plus simple possible et fonctionnel.
+
+II - Explication du système illustré sur le Poster
+
+    1. Module des anchors avec liaison beaglebone [Guigui]
+
+        - un ensemble d'antenne installées autour du terrain qui reçoivent des informations des tags présents sur les joueurs. Ces antennes envoient toutes leurs
+        reçues à l'antenne master qui, elle, va tout envoyer, via une liaison ethernet les informations à une carte mère afin d'interpréter les données.
+
+    2. Interface graphique --> Module Android
+
+        - Une application android sera l'interface graphique qui permettra l'affichage des données précédemment interprétées.
+
+III - Etat d'avancement
+
+    1. Fait
+    2. Encore à faire
+

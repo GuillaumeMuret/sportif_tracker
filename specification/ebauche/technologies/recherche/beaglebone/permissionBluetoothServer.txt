@@ -1,0 +1,6 @@
+http://discocid1.blogspot.fr/2010/06/rfcomm-bluetooth-permission-denied.html
+
+1) cd /etc
+2) sudo nano group
+3) change "bluetooth:x:111:debian" into "bluetooth:x:111:pi"
+4) sudo chgrp bluetooth /var/run/sdp

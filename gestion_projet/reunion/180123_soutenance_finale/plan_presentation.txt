@@ -1,0 +1,158 @@
+
+**************** PLAN PRESENTATION SOUTENANCE FINALE **************** 
+                 ************    PFE    ************
+
+********************
+ Sommaire principal
+********************
+
+  I.  Rappels du projet
+
+ II.  Etat d'avancement
+
+III.  Tâches restantes
+
+ IV.  Gestion de projet
+
+
+
+*******************************
+Présentation avec sous parties
+*******************************
+
+I. Rappels du projet
+
+    1. Origine du projet (Franz)
+
+        - FFRS (Fédération française de roller skateboard)
+        - Equipe de France de RH (championne du monde en 2017, etc ...)
+        - Geoffroy Tijou
+        - Historique de la FFRS
+        
+    2. Besoins Client (Franz)
+
+        De plus en plus de pratiques sportives se servent de système de collecte de données afin d'analyser les performances
+        d'affiner des stratégie de jeux, surveiller le forme physique de joueurs, etc ...
+
+        Blabla -> :
+        Disposer d'un système capable d'effectuer des mesures pertinentes sur les joueurs
+        lors de différentes activités. 
+
+
+        - Deadlines Client (tests en mars)
+        4 mois, début octobre
+
+    3. Vidéo roller hockey (Angelitaw)
+
+        - Mettre vidéo
+
+    4. Cahier des charges (Angelitaw)
+
+        Après consultation avec le client, nous avons ressorti 
+        les données à collecter en priorité.
+
+        - Position sur le terrain
+        - Distance parcourue
+        - Vitesse 
+        - Fréquence cardiaque
+
+    
+    5. Mise en situation (Guillaume)
+
+        - Simulation d'un match de Roller Hockey
+        - Faire ressortir notre solution en fonction de différentes situations de Match 
+    
+    6. L'Equipe (Franz)
+
+        - Notre équipe + l'équipe des I1
+
+
+
+II. Etat d'avancement 
+
+    1. Bibliographie et choix techniques (Benoit)
+
+        - Dossier de spécification
+        - Explorations technique / Comparaison des différentes technologies
+        - Dossier de conception
+
+
+    2. Attribution des Tâches (Benoit)
+
+        - Notre équipe et présenter l'équipe de I1 (et leur tâche pendant le projet)
+
+            Notre équipe : Technologie RFID UWB
+            Equipe I1 : Technologie BLE
+
+    3. Solution développée (Antoine)
+
+        - Schéma poster
+        - Architecture du système
+        - Présenter les différents capteurs utilisés pour le système
+        (capteur dans le dossard pour la position & capteur brassard pour la fréquence cardiaque)
+
+SWITCH The Marc & Guigui & Antoine
+**********************************
+
+    4. Développement matériel 
+        
+        - Prise en main avec OpenRTLS (Guigui)
+        - Récupération des données des tags (Guigui)
+        (Distance du tags par rapport aux différentes antennes branchées sur le terrain)
+        - Algorithme d'interprétation des données capable de renvoyer le position d'un tag en fonction de l'antenne master sur le terrain. (Marc)
+        - Récupération des données de pulsation cardiaque (Antoine)
+
+    5. Développement Android
+
+        - Présenter notre méthode d'implémentation (cf. diapo 20 mi avancement)
+          Autre idée pour présenter plus précisémment l'application ?
+
+**********************************
+
+III. Tâches restantes (Angelitaw)
+
+    1. Modules restants à implémenter
+
+        - Amélioration de la précision de la position d'un tag
+        - Interpréter d'avantages de données grâce à la récupération de la position 
+        que nous avons pas pu implémenter par manque de temps. (ex : Vitesse, accélération, etc...)
+        - Expérimentation de plusieurs capteurs de fréquence cardiaque notamment les montres connectées
+        - Réduire le nombre de capteurs (2 pour l'instant en 1) pour réduire l'installation sur les joueurs
+        Cet unique capteur renverra le position et la fréquence cardiaque des joueurs
+
+    2. Réalisations de tests
+
+        - Introduire les futures conditions de tests (Ou ? Combien d'antenne ? Combien de tags ? etc ...)
+        - Démo avec les I1
+
+
+V. Gestion de projet (François)
+
+    1. Communication
+
+    2. Planning effectif et répartition des tâches
+
+        - Réunion de transmission de connaissances avec les I1 (29 janvier 16h)
+        - Date de la phase de tests (2 février 12h)
+        - Reprise du projet par les I1 (5 février)
+        - phase de tests grandeur nature en Mars (11-12 mars)
+
+
+VI. Conclusion et retours
+
+    1. Sur le projet
+
+        - Sujet de PFE intéressant
+        - Bonne ambiance dans l'équipe, bonne communication, etc ...
+    
+        - Partant de zéro, bcp de travail de recherche, explorations, etc ...
+        - Timing très tendu
+        - Espoir d'avoir des résultats exploitables avec les futurs tests à venir
+
+    2. Collaboration avec les I1
+
+        - Idée interessante
+        - Groupe trop important (12 personnes c'est trop)
+        - Trop peu de temps dans leur emploi du temps pour travailler sur le projet
+
+

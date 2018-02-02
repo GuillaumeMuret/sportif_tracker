@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/degrade_background"
+    android:gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                style="@style/NeosToolbar" />
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            >
+
+            <ImageView
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_field_grey"
+                />
+
+            <ca.hss.heatmaplib.HeatMap
+                android:id="@+id/heat_map"
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                app:minOpacity="0"
+                app:maxOpacity="255"
+                app:blur="0.001"
+                app:transparentBackground="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Longueur"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_field_width"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@android:color/transparent"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hauteur"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_field_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@android:color/transparent"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

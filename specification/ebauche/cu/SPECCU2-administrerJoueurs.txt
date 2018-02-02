@@ -1,0 +1,16 @@
+@startuml
+
+(Administrer les joueurs) as (Cu2)
+:Entraineur: as Ent
+
+(Cu2) -left- Ent
+
+(Administrer un joueur) as (Cu6)
+(Créer un nouveau profil joueur) as (Cu7)
+(Supprimer des joueurs) as (Cu8)
+
+(Cu2) .up.> (Cu6) : <<include>>
+(Cu2) .down.> (Cu7) : <<include>>
+(Cu2) .down.> (Cu8) : <<include>>
+
+@enduml

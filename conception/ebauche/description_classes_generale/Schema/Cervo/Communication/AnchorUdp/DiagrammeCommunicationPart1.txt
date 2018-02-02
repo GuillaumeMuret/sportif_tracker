@@ -1,0 +1,72 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+
+}
+
+class SetUpConnexion <<T, Thread>>{
+	+ run() : void
+}
+
+class UdpDistributor <<S, Singleton>> {
+	- UdpDistributor()
+	+ getInstance() : UdpDistributor
+	+ dispatch(AnchorMessage) : ArrayList<ActionForBrain>
+	- command : ICommandUdpAnchorIn
+	- instance : UdpDistributor
+}
+
+interface ICommandUdpAnchorIn{
+	+ convertAndGetActions(AnchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessTwrJsonMessage{
+	+ convertAndGetActions(AnchorMessage) : ArrayList<ActionForBrain>
+}
+
+class UdpAnchorCommunication <<S, Singleton>> {
+	- UdpAnchorCommunication(Brain, ICommunicationState)
+	+ getInstance(Brain, ICommunicationState) : UdpAnchorCommunication
+	+ readComMessage() : String
+	+ launchReadThread() : void
+	+ getUdpPostman() : UdpPostman
+	- communicationState : ICommunicationState
+	- udpPostman : UdpPostman
+	- udpDistributor : UdpDistributor
+	- brain : Brain
+	- readThread : ReadThread
+	- instance : UdpAnchorCommunication
+}
+
+class ReadThread <<T, Thread>> {
+	- manageReading() : void
+	+ run() : void
+	- receivedMessage : String
+}
+
+class UdpPostman <<S, Singleton>> {
+	- UdpPostman(UdpAnchorCommunication)
+	+ getInstance(UdpAnchorCommunication) : UdpPostman
+	+ readMessage() : String
+	+ closeSocket() : void
+	+ getStateSocket() : int
+	- PACKET_BUFFER_SIZE : int = 5000
+	- UDP_RTLS_PORT : int = 8787
+	- stateSocket : int
+	- ENCODAGE : String = "UTF-8"
+	- mySocket : DatagramSocket
+	- udpAnchorCommunication : UdpAnchorCommunication
+	- instance : UdpPostman
+}
+
+UdpAnchorCommunication --"1" ReadThread
+UdpAnchorCommunication ---"1" UdpDistributor
+UdpAnchorCommunication --"1" UdpPostman
+
+UdpPostman -- SetUpConnexion
+UdpAnchorCommunication -right-"1" Brain
+
+UdpDistributor --"1" ICommandUdpAnchorIn
+ProcessTwrJsonMessage .. ICommandUdpAnchorIn
+
+@enduml

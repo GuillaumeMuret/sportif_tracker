@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            >
+
+            <include
+                android:layout_width="@dimen/item_recycler_list_image_size"
+                android:layout_height="@dimen/item_recycler_list_image_size"
+                layout="@layout/item_player_photo_list"
+                />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spPlayerList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="0dp"
+                android:paddingLeft="0dp"
+                android:layout_marginBottom="0dp"
+                android:paddingBottom="0dp"
+
+                app:ms_thickness="0dp"
+                app:ms_enableFloatingLabel="false"
+                app:ms_enableErrorLabel="false"
+                app:ms_arrowSize="@dimen/activity_sessions_manager_arrow_size"
+                app:ms_arrowColor="@color/colorWhite"
+                app:ms_alignLabels="false"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical"
+                >
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spPositionSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="0dp"
+                    android:paddingLeft="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:paddingBottom="0dp"
+
+                    app:ms_thickness="0dp"
+                    app:ms_enableFloatingLabel="false"
+                    app:ms_enableErrorLabel="false"
+                    app:ms_arrowSize="@dimen/activity_sessions_manager_arrow_size"
+                    app:ms_arrowColor="@color/colorWhite"
+                    app:ms_alignLabels="false"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/imgPositionSensorStateBackground"
+                        android:layout_width="@dimen/item_recycler_list_icon_size"
+                        android:layout_height="@dimen/item_recycler_list_icon_size"
+                        android:background="@drawable/circle_red"
+                        android:layout_alignParentRight="true"
+                        >
+                        <ImageView
+                            android:id="@+id/imgPositionSensorStateSrc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/item_recycler_list_icon_padding"
+                            />
+                        <ProgressBar
+                            android:id="@+id/pbPositionStateConnectionProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spHeartBeatSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="0dp"
+                    android:paddingLeft="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:paddingBottom="0dp"
+
+                    app:ms_thickness="0dp"
+                    app:ms_enableFloatingLabel="false"
+                    app:ms_enableErrorLabel="false"
+                    app:ms_arrowSize="@dimen/activity_sessions_manager_arrow_size"
+                    app:ms_arrowColor="@color/colorWhite"
+                    app:ms_alignLabels="false"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:id="@+id/imgHeartBeatSensorStateBackground"
+                        android:layout_width="@dimen/item_recycler_list_icon_size"
+                        android:layout_height="@dimen/item_recycler_list_icon_size"
+                        android:background="@drawable/circle_red"
+                        android:layout_alignParentRight="true"
+                        >
+                        <ImageView
+                            android:id="@+id/imgHeartBeatSensorStateSrc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/item_recycler_list_icon_padding"
+                            />
+                        <ProgressBar
+                            android:id="@+id/pbHeartBeatStateConnectionProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_divider_height"
+        android:background="@color/colorItemDivider"
+        android:layout_marginLeft="@dimen/item_divider_margin_left_right"
+        android:layout_marginRight="@dimen/item_divider_margin_left_right"
+        android:layout_marginTop="@dimen/item_divider_margin_top_bottom"
+        android:layout_marginBottom="@dimen/item_divider_margin_top_bottom"
+        />
+</LinearLayout>

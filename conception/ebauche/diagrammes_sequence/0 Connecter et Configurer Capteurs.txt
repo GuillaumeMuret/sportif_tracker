@@ -1,0 +1,139 @@
+@startuml
+
+Title Connecter et Configurer Capteurs
+
+
+actor Entraineur
+participant IHM as IHM
+participant LED as LED
+participant Button as Button
+participant BrainBeagle as BrainBeagle
+participant Brassard as Brassard
+participant Cardio as Cardio
+participant AcceleroGyro as AcceleroGyro
+participant Dossard as Dossard
+participant RTLS as RTLS
+participant RFID as RFID #99FF99
+
+activate IHM #darksalmon
+activate BrainBeagle #darksalmon
+activate RTLS #darksalmon
+
+
+
+Create Brassard
+Entraineur -> Brassard : brancherAlim()
+activate Brassard #darksalmon
+
+Create Cardio
+Brassard -> Cardio : create()
+activate Cardio #darksalmon
+loop !notUnplugged
+	Cardio -> Brassard : sendData(cardioData)
+end
+
+Create AcceleroGyro
+Brassard -> AcceleroGyro : create()
+activate AcceleroGyro #darksalmon
+loop !notUnplugged
+	AcceleroGyro -> Brassard : sendData(acceleroData, GyroData)
+end
+
+loop !notConnected
+	group after [TW_PERIOD_BRASSARD]
+		Brassard -> BrainBeagle : connecter(brassard)
+	end
+	BrainBeagle --> Brassard : confirmerConnexion(brassard)
+	deactivate Brassard #darksalmon
+end
+BrainBeagle -> IHM : notifierConnexion(brassard)
+
+
+
+Entraineur -> IHM : gererCapteurs()
+IHM -> BrainBeagle : demanderCapteurs()
+BrainBeagle -> IHM : informerCapteurs(brassards, dossards)
+IHM -> Entraineur : afficherEcran(ecran)
+
+
+
+Create RFID
+Entraineur -> RFID : brancherAlim()
+activate RFID #darksalmon
+loop !notUnplugged
+	RFID -> RTLS : sendData(locationData)
+end
+
+Create Dossard
+RTLS -> Dossard : create()
+activate Dossard #darksalmon
+Dossard -> BrainBeagle : connecter(dossard)
+deactivate Dossard #darksalmon
+BrainBeagle -> IHM : notifierConnexion(dossard)
+IHM -> Entraineur : afficherEcran(ecran)
+
+
+
+Entraineur -> IHM : attributionJoueur(joueur, brassard, dossard)
+Entraineur -> IHM : attributionJoueur(joueur, dossard)
+
+
+
+Entraineur -> IHM : lancerEnregistrement()
+IHM -> BrainBeagle : lancerEnregistrement()
+BrainBeagle -> LED : allumer()
+activate LED #darksalmon
+
+BrainBeagle -> Brassard : startSendData(brassard, date)
+activate Brassard #darksalmon
+loop !sessionFinished
+	Brassard -> BrainBeagle : sendData(brassard, cardioData, date)
+	BrainBeagle -> BrainBeagle : saveData(brassard, cardioData, date)
+	Brassard -> BrainBeagle : sendData(brassard, acceleroData, date)
+	BrainBeagle -> BrainBeagle : saveData(brassard, acceleroData, date)
+	Brassard -> BrainBeagle : sendData(brassard, GyroData, date)
+	BrainBeagle -> BrainBeagle : saveData(brassard, GyroData, date)
+end
+
+BrainBeagle -> Dossard : startSendData(dossard, date)
+activate Dossard #darksalmon
+loop !sessionFinished
+	Dossard -> BrainBeagle : sendData(dossard, locationData, date)
+	BrainBeagle -> BrainBeagle : saveData(dossard, locationData, date)
+end
+
+
+
+alt stopping through IHM
+	Entraineur -> IHM : stopperEnregistrement()
+	IHM -> BrainBeagle : stopperEnregistrement()
+else stopping through Button
+	Entraineur -> Button : apppuyer()
+	activate Button #darksalmon
+	Button -> BrainBeagle : stopperEnregistrement()
+	deactivate Button #darksalmon
+end
+
+BrainBeagle -> LED : eteindre()
+deactivate LED #darksalmon
+
+BrainBeagle -> IHM : notifierFinSession()
+
+BrainBeagle -> Brassard : stopSendData(brassard, date)
+deactivate Brassard #darksalmon
+
+BrainBeagle -> Dossard : stopSendData(dossard, date)
+deactivate Dossard #darksalmon
+
+
+
+BrainBeagle -> BrainBeagle : traiterDonnees(cardioDatas, dates)
+BrainBeagle -> BrainBeagle : traiterDonnees(acceleroDatas, dates)
+BrainBeagle -> BrainBeagle : traiterDonnees(GyroDatas, dates)
+BrainBeagle -> BrainBeagle : traiterDonnees(locationDatas, dates)
+
+BrainBeagle -> IHM : enregistrerSession(datas)
+
+
+
+@enduml

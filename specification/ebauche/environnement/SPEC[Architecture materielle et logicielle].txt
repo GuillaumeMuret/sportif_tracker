@@ -1,0 +1,16 @@
+@startuml
+[Capto] as Capto
+[Maestro] as Maestro
+[Cervo] as Cervo
+
+node Capteur as Capteur
+node Tablette as Tablette
+node Carte as Carte
+
+Capto .. Capteur
+Maestro .. Tablette
+Cervo .. Carte
+
+Tablette - Carte
+Carte - Capteur
+@enduml

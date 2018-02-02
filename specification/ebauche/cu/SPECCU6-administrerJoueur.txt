@@ -1,0 +1,14 @@
+@startuml
+
+(Administrer un joueur) as (Cu6)
+:Entraineur: as Ent
+
+(Cu6) -left- Ent
+
+(Modifier le profil d’un joueur) as (Cu9)
+(Consulter une statistique) as (Cu10)
+
+(Cu6) .down.> (Cu9) : <<include>>
+(Cu6) .down.> (Cu10) : <<include>>
+
+@enduml

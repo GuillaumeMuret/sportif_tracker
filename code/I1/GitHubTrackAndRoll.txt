@@ -1,0 +1,24 @@
+##########
+# GitHub #
+##########
+
+Username = TrackAndRollDev
+email = trackandrollgithub@gmail.com
+password = opGdE56bn
+
+https://github.com/TrackAndRollDev/TrackAndRoll.git
+
+################
+# Installation #
+################
+
+1 - Installer Git et s'assurer pendant l'installation d'avoir activer l'option permettant d'ouvrir un git bash pour l'interpréteur de commande Git
+2 - Installer Android Studio
+3 - Se mettre dans le dossier où se trouvera le projet
+4 - Ouvrir un Git Bash dans le dossier où se trouvera le projet et taper la ligne "git clone https://github.com/TrackAndRollDev/TrackAndRoll.git" 
+5 - Rentrer le username et mot de pass du Git (juste au dessus)
+6 - Ouvrir Android Studio
+7 - Faire "OPEN" ET NE PAS FAIRE "IMPORT" !!!!! Sélectionner le projet que vous venez de cloner qui se trouve dans "{$PROJECT_NAME}/TrackAndRoll/code/TrackAndRoll" où {$PROJECT_NAME} est le nom du dossier où vous avez cloner le git
+8 - Dans Android Studio : attendre la fin du build de Gradle
+9 - Cliquer sur "Build" --> "Make Project"
+10 - Brancher son téléphone ou lancer un AVD (Android Virtual Device) et cliquer sur "Run" -> "Run 'app' (bouton play en vert)

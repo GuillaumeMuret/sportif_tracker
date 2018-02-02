@@ -1,0 +1,15 @@
+@startuml
+
+(Cas d'utilisation) as (Cu)
+:Acteur: as Act
+
+(Cu) -left- Act
+
+(Extension d'un cas d'utilisation) as (Extent)
+(Sous-cas d'utilisation) as (SCU)
+
+(Cu) <.right. (Extent) : <<extend>>
+(Cu) .down.> (SCU) : <<include>>
+
+
+@enduml

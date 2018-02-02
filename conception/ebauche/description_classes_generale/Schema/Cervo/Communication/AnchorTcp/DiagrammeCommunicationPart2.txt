@@ -1,0 +1,67 @@
+@startuml
+
+class TcpAnchorDistributor <<S, Singleton>> {
+	- TcpAnchorDistributor()
+	+ getInstance() : TcpAnchorDistributor
+	+ dispatch(AnchorMessage) : ArrayList<ActionForBrain>
+	- commands : HashMap<String, ICommandTcpAnchorIn>
+	- instance : TcpAnchorDistributor
+}
+
+interface ICommandTcpAnchorIn {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessResponseListAnchors {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessResponseListTags {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessResponseScanInfra {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessResponseSetPos {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessSetNodeConfig {
+	+ convertAndGetAction(AnchorMessage anchorMessage) : ArrayList<ActionForBrain>
+}
+
+class TcpAnchorCommunication <<S, Singleton>> {
+	- postmanServer : TcpAnchorPostmanClient
+	- distributor : TcpAnchorDistributor
+	- proxyClient : TcpAnchorProxy
+	- mapReadThread : HashMap<Integer, ReadThread>
+	- brain : Brain
+	- instance : TcpAnchorCommunication
+	- TcpAnchorCommunication(Brain)
+	+ getInstance(Brain) : TcpAnchorCommunication
+	+ readComMessage(int) : String
+	+ getTcpAnchorPostmanClient() : TcpAnchorPostmanClient
+	+ onSocketConnected(int) : void
+	+ getTcpAnchorProxy() : TcpAnchorProxy
+}
+
+class ReadThread <<T, Thread>> {
+	- manageReading() : void
+	+ run() : void
+	- receivedMessage : String
+}
+
+TcpAnchorCommunication -left- ReadThread
+TcpAnchorCommunication -- TcpAnchorDistributor
+
+ICommandTcpAnchorIn ..up. ProcessResponseListAnchors
+ICommandTcpAnchorIn .up. ProcessResponseListTags
+ICommandTcpAnchorIn .down. ProcessResponseScanInfra
+ICommandTcpAnchorIn ..down. ProcessResponseSetPos
+ICommandTcpAnchorIn .down. ProcessSetNodeConfig
+
+TcpAnchorDistributor --down-"*" ICommandTcpAnchorIn
+
+@enduml

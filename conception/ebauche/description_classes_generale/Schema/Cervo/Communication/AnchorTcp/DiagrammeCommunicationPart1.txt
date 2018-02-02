@@ -1,0 +1,84 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+
+}
+
+class Write <<T, Thread>> {
+	+ Write(String)
+	+ run() : void
+	- messageToSend : String
+}
+
+class SetUpConnexion <<T, Thread>>{
+	+ run() : void
+}
+
+class TcpAnchorProxy <<S, Singleton>> {
+	- instance : TcpAnchorProxy
+	- postman : TcpAnchorPostmanClient
+	- TcpAnchorProxy(TcpAnchorPostmanClient postman)
+	+ getInstance(TcpAnchorPostmanClient postman)
+	+ sendMessage(AnchorMessage anchorMessage)
+}
+
+class TcpAnchorDistributor <<S, Singleton>> {
+
+}
+
+class TcpAnchorCommunication <<S, Singleton>> {
+	- TcpAnchorCommunication(Brain, ICommunicationState)
+	+ getInstance(Brain, ICommunicationState) : TcpAnchorCommunication
+	+ relaunchCommunication() : void
+	+ readComMessage() : String
+	+ launchReadThread() : void
+	+ getTcpAnchorPostmanClient() : TcpAnchorPostmanClient
+	+ getTcpAnchorProxy() : TcpAnchorProxy
+	+ getCommunicationState() : ICommunicationState
+	- communicationState : ICommunicationState
+	- tcpAnchorPostmanClient : TcpAncorPostmanClient
+	- tcpAnchorDistributor : TcpAnchorDistributor
+	- tcpAnchorProxy : TcpAnchorProxy
+	- brain : Brain
+	- readThread : ReadThread
+	- instance : TcpAnchorCommunication
+}
+
+class ReadThread <<T, Thread>> {
+	- manageReading() : void
+	+ run() : void
+	- receivedMessage : String
+}
+
+class TcpAnchorPostmanClient <<S, Singleton>> {
+	- TcpAnchorPostmanClient(TcpAnchorCommunication)
+	+ relaunchPostman() : void
+	+ getInstance(TcpAnchorCommunication) : TcpAnchorPostmanClient
+	+ writeMessage(String) : void
+	+ readMessage() : String
+	+ launchTimerReportError() : void
+	+ closeSocket() : void
+	+ getStateSocket() : int
+	- stateSocket
+	+ SERVER_PORT : int = 8784
+	+ IP_ADDRESS : String = "192.168.11.192"
+	- ENCODAGE : "UTF-8"
+	- mySocket : Socket
+	- bufferedReader : BufferedReader
+	- bufferedWriter : BufferedWriter
+	- tcpCommunicationTCPAnchor : TcpAnchorCommunication
+	- instance : TcpAnchorPostmanClient
+}
+
+TcpAnchorCommunication --"1" ReadThread
+TcpAnchorCommunication --"1" TcpAnchorDistributor
+TcpAnchorCommunication --"1" TcpAnchorPostmanClient
+TcpAnchorCommunication --"1" TcpAnchorProxy
+
+TcpAnchorProxy --"1" TcpAnchorPostmanClient
+
+TcpAnchorPostmanClient - Write
+TcpAnchorPostmanClient - SetUpConnexion
+TcpAnchorCommunication -right-"1" Brain
+
+@enduml

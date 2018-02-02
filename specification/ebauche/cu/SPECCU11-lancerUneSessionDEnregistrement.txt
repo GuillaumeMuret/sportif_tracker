@@ -1,0 +1,14 @@
+@startuml
+
+(Lancer une session d'enregistrement) as (Cu11)
+:Entraineur: as Ent
+
+(Cu11) -left- Ent
+
+(Consulter les sessions) as (Cu4)
+(Administrer les capteurs) as (Cu3)
+
+(Cu11) .down.> (Cu4) : <<include>>
+(Cu11) .down.> (Cu3) : <<include>>
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+
+(Consulter les sessions) as (Cu4)
+:Entraineur: as Ent
+
+(Cu4) -left- Ent
+
+(Administrer les capteurs) as (Cu3)
+(Consulter un joueur) as (Cu12)
+
+(Cu4) .down.> (Cu3) : <<include>>
+(Cu4) .down.> (Cu12) : <<include>>
+
+@enduml

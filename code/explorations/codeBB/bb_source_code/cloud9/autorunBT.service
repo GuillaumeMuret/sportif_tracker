@@ -1,0 +1,8 @@
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/var/lib/cloud9/examples/autorunBT.sh
+
+[Install]
+WantedBy=default.target

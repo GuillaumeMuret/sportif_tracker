@@ -1,0 +1,122 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+
+}
+
+class ArmbandCommunication <<S, Singleton>> {
+	- ArmbandCommunication(Brain, ICommunicationState)
+	+ getInstance(Brain, ICommunicationState) : ArmbandCommunication
+	- readComMessage() : String
+	+ launchReadThread() : void
+	+ relaunchCommunication(Brain, ICommunicationState) : void
+	- communicationState : ICommunicationState
+	- bluetoothPostman : ArmbandPythonTcpPostman
+	- armbandDistributor : ArmbandDistributor
+	- brain : Brain
+	- instance : ArmbandCommunication
+}
+
+class SocketArmbandCommunication {
+	- bufferedWriter : BufferedWriter
+	- bufferedReader : BufferedReader
+	- writingThread : Write
+	- mySocket : Socket
+	+ SocketArmbandCommunication(Socket)
+	+ writeMessage(String) : void
+	+ readMessage() : SocketMessage
+	+ getStateSocket() : StateSocket
+}
+
+class SocketArmbandConnexion {
+	- postmanServer : ArmbandPythonTcpPostman
+	+ SocketArmbandConnexion(ArmbandPythonTcpPostman)
+	+ getStateSocket() : StateSocket
+	+ TW_CONNECTION_SOCKET : int = 1000
+	+ QUEUE_WAIT : int = 100
+	+ PORT : int = 55000
+	+ IP_ADDRESS : String = "127.0.0.1"
+}
+
+class SetUpConnexion <<T, Thread>>{
+	+ run() : void
+}
+
+class Write <<T, Thread>> {
+	+ Write(String)
+	+ run() : void
+	- messageToSend : String
+}
+
+class PythonExecutor <<T, Thread>>{
+	- PYTHON_FILENAME : String = "serialReceiveHR.py"
+	+ run() : void
+}
+
+class ArmbandDistributor <<S, Singleton>> {
+	- ArmbandDistributor()
+	+ getInstance() : ArmbandDistributor
+	+ dispatch(ArmbandMessage) : ArrayList<ActionForBrain>
+	- commands : HashMap<String, ICommandArmbandIn>
+	- instance : ArmbandDistributor
+}
+
+interface ICommandArmbandIn{
+	+ convertAndGetAction(ArmbandMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessSendBpm{
+	+ convertAndGetAction(ArmbandMessage) : ArrayList<ActionForBrain>
+}
+
+class ReadThread <<T, Thread>> {
+	- manageReading() : void
+	+ run() : void
+	- receivedMessage : String
+}
+
+class ArmbandPythonTcpPostman <<S, Singleton>> {
+	- ArmbandPythonTcpPostman(ArmbandCommunication)
+	+ getInstance(ArmbandCommunication) : ArmbandPythonTcpPostman
+	+ readMessage() : String
+	+ getStateSocket : StateSocket
+	+ notifyNewSocketConnected(SocketArmbandCommunication) : void
+	+ removeSocketCommunication() : void
+	+ isSocketCommunicationNeeded() : boolean
+	- serverSocketCommunication : SocketArmbandCommunication
+	- armbandCommunication : ArmbandCommunication
+	- instance : ArmbandPythonTcpPostman
+}
+
+abstract AbstractSocket{
+	# stateSocket : StateSocket
+	# ENCODAGE : String = "UTF-8"
+}
+
+enum StateSocket{
+	+ CONNEXION : StateSocket
+	+ CONNECTED : StateSocket
+ 	+ ERROR : StateSocket
+}
+
+ArmbandCommunication -left-"1" ReadThread
+ArmbandCommunication --"1" ArmbandDistributor
+ArmbandCommunication --"1" ArmbandPythonTcpPostman
+ArmbandCommunication -- PythonExecutor
+
+ArmbandDistributor -down-"*" ICommandArmbandIn
+ProcessSendBpm .up. ICommandArmbandIn
+
+ArmbandPythonTcpPostman --"1" SocketArmbandConnexion
+ArmbandPythonTcpPostman --"1" SocketArmbandCommunication
+
+SocketArmbandConnexion -- SetUpConnexion
+
+SocketArmbandCommunication -- Write
+ArmbandCommunication -right-"1" Brain
+
+AbstractSocket <|-up- SocketArmbandCommunication
+AbstractSocket <|-up- SocketArmbandConnexion
+AbstractSocket -right- StateSocket
+
+@enduml

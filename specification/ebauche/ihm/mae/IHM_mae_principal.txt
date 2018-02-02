@@ -1,0 +1,59 @@
+@startuml
+title IHM machine a etat \n
+
+[*] --> Screen_Splash
+Screen_Splash --> Screen_Login : after(TW_SCREEN_SPLASH)
+
+Screen_Login --> Screen_Login : connect [ERROR_IDENTIFICATION] 
+Screen_Login --> Screen_Players : connect [not(ERROR_IDENTIFICATION)] 
+
+Screen_Players --> Screen_Players : deletePlayer
+Screen_Players ---> Screen_PlayerProfile : selectPlayer
+Screen_Players --> Screen_AddNewPlayer : addPlayer
+Screen_Players --> State_Menu : menu
+
+Screen_AddNewPlayer --> Screen_Players : saveNewPlayer
+Screen_AddNewPlayer --> Screen_Players : cancel
+Screen_AddNewPlayer --> Screen_AddNewPlayer : editPlayer
+
+Screen_CustomPlayer --> Screen_PlayerProfile : savePlayer
+Screen_CustomPlayer --> Screen_PlayerProfile : cancel
+Screen_CustomPlayer --> Screen_Players : deletePlayer
+Screen_CustomPlayer --> Screen_CustomPlayer : editPlayer
+
+State_Menu --> Screen_Players : players
+State_Menu --> Screen_MyAccount : myAccount
+State_Menu --> Screen_Login : disconnect
+State_Menu --> Screen_SessionsManager : sessions
+State_Menu --> Screen_SensorsManager : sensors
+State_Menu --> Screen_Help : help
+
+Screen_MyAccount --> State_Menu : menu
+Screen_MyAccount --> Screen_MyAccount : editAccount
+Screen_MyAccount --> Screen_MyAccount : importConfiguration
+Screen_MyAccount --> Screen_MyAccount : exportConfiguration
+
+Screen_SessionsManager --> State_Menu : menu
+Screen_SessionsManager --> Screen_SessionsManager : deleteSession
+Screen_SessionsManager --> Screen_SessionsManager : editSession
+Screen_SessionsManager --> Screen_SensorsManager : createSession
+Screen_SessionsManager --> Screen_PlayerProfile : seePlayerStat(sessionId)
+
+Screen_PlayerProfile --> Screen_Players : return
+Screen_PlayerProfile --> Screen_Players : deletePlayer
+Screen_PlayerProfile --> Screen_CustomPlayer : CustomPlayer
+Screen_PlayerProfile ----> Screen_SessionsManager : return
+Screen_PlayerProfile --> Screen_DataX : selectDataX
+Screen_PlayerProfile --> Screen_DataX : selectDataX
+
+Screen_DataX --> Screen_PlayerProfile : return
+Screen_DataX --> Screen_PlayerProfile : return
+
+Screen_SensorsManager --> State_Menu : menu
+Screen_SensorsManager --> Screen_SensorsManager : allocateSensorsToPlayer
+Screen_SensorsManager --> Screen_RunningSession : runSession
+
+Screen_Help --> State_Menu : menu
+
+Screen_RunningSession --> Screen_SessionsManager : terminateSession
+@enduml

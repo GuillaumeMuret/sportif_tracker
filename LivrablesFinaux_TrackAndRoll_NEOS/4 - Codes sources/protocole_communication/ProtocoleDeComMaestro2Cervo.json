@@ -1,0 +1,56 @@
+De_MAESTRO_vers_CERVO
+
+version_1.0
+
+Transmission_des_données
+
+
+//Format des dates (AAAA_MM_JJ-HH:MM:SS:mmm)	:	"2017_11_30-22:14:23:300"
+//Format des positions (en mètres)				:	1.00
+//Format des vitesses (en km/h)					:	16.0
+//Format des accelerationEffort					:	100
+//Format des données cardio (en BPM)			:	193
+
+
+GENERIQUE_:
+{
+	"process" : "PROCESS",
+	"params" :
+		{
+			"nomParam1" : "PARAM1",
+			"nomParam2" : "PARAM2"
+		}
+}
+
+
+EXEMPLE_1
+{
+	"process" : "askSensors",
+	"params" :
+		{
+		}
+}
+
+EXEMPLE_2
+{
+	"process" : "startSaving",
+	"params" :
+		{
+		}
+}
+
+EXEMPLE_3
+{
+	"process" : "stopSaving",
+	"params" :
+		{
+		}
+}
+
+EXEMPLE_4
+{
+	"process" : "deleteSaving",
+	"params" :
+		{
+		}
+}

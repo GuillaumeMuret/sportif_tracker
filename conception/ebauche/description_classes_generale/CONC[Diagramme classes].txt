@@ -1,0 +1,98 @@
+@startuml
+hide circle
+
+package Cervo{
+	class BrainBeagle << active >> {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+	class Localisateur {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+	class Memory {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+
+
+	class Dossard << active >> {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+	class RTLS {
+		-attribut attribut
+		--
+		+void methode()
+	}
+}
+
+package CaptoBeagle{
+	class Button {
+		-attribut attribut
+		--
+		+void methode()
+	}
+	
+	class LED << active >> {
+		-attribut attribut
+		--
+		+void methode()
+	}
+}
+
+package CaptoDossard #99FF99{
+	class RFID #99FF99
+}
+
+package CaptoBrassard{
+	class Brassard << active >> {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+	class AccelereoGyro {
+		-attribut attribut
+		--
+		+void methode()
+	}
+
+	class Cardio {
+		-attribut attribut
+		--
+		+void methode()
+	}
+}
+
+package Maestro{
+	class IHM << active >> {
+		-attribut attribut
+		--
+		+void methode()
+	}
+}
+
+Brassard "1"  -down- "1"  AccelereoGyro
+Brassard "1"  -down- "1"  Cardio
+Brassard "*"  -- "1"  BrainBeagle
+
+RFID "*"  -- "1"  RTLS
+RTLS "1"  -- "*"  Dossard
+Dossard "*"  -down- "1"  BrainBeagle
+
+BrainBeagle "1"  -- "1"  Localisateur
+BrainBeagle "1"  -- "1"  Memory
+BrainBeagle "1"  -- "1"  Button
+BrainBeagle "1"  -- "1"  LED
+BrainBeagle "1"  -left- "1"  IHM
+
+@enduml

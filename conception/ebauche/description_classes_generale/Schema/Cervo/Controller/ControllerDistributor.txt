@@ -1,0 +1,38 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+	
+}
+
+abstract AbstractActionForBrain{
+	+ AbstractActionForBrain(Brain)
+	# brain : Brain
+}
+
+interface IActionForBrain {
+	+ execute(String[]) : void
+}
+
+Brain -left- AbstractActionForBrain
+
+AbstractActionForBrain .left. IActionForBrain
+
+AbstractActionForBrain <|-up- ActionAskListTagAndAnchors
+AbstractActionForBrain <|--up- ActionInitAnchorsAndPosition
+AbstractActionForBrain <|---up- ActionRelaunchWatchdogForTag
+AbstractActionForBrain <|----up- ActionManagePythonDisconnected
+AbstractActionForBrain <|----up- ActionRelaunchWatchdogForArmband
+AbstractActionForBrain <|---up- ActionDeleteSaving
+AbstractActionForBrain <|--up- ActionFindTagPosition
+AbstractActionForBrain <|--up- ActionLaunchTimerCheckMaestroConnection
+AbstractActionForBrain <|-up- ActionSendAllSensorsForMaestro
+AbstractActionForBrain <|-down- ActionSendAnchorDisconnected
+AbstractActionForBrain <|--down- ActionSendArmbandConnected
+AbstractActionForBrain <|---down- ActionSendArmbandDisconnected
+AbstractActionForBrain <|----down- ActionSendTagConnected
+AbstractActionForBrain <|----down- ActionSendTagDisconnected
+AbstractActionForBrain <|---down- ActionStartSaving
+AbstractActionForBrain <|--down- ActionStopSavingAndSendData
+AbstractActionForBrain <|-down- ActionStopTimerCheckMaestroConnection
+
+@enduml

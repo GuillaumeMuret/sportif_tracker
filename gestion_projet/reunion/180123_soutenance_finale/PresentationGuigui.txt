@@ -1,0 +1,12 @@
+Notre solution
+
+
+- Schéma d'où se trouve la donnée
+- Où se trouve nos données
+- Mise en situation
+- Des joueurs sur un terrain
+- Récupérer les fréquences carfdiaques pour récupérer les positions, accélération etc.
+Il faut donc pouvoir localiser les joueurs et pouvoir les afficher sur une tablette android
+- Faire le schéma
+- Explication des données sur le schéma
+- Faire un scénario : à partir du besoin du client, vers notre solution. (On a des joueurs qui courent un peu partout, comment visualiser leurs déplacements).

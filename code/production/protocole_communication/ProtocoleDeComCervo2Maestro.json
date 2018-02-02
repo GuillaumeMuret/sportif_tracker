@@ -1,0 +1,372 @@
+#author DE BENTZMANN Marc
+De_CERVO_vers_MAESTRO
+
+version_1.0
+
+Transmission_des_données
+
+
+//Format des dates (AAAA_MM_JJ-HH:MM:SS:mmm)	:	"2017_11_30-22:14:23:300"
+//Format des positions (en mètres)				:	1.00
+//Format des vitesses (en km/h)					:	16.0
+//Format des accelerationEffort					:	100
+//Format des données cardio (en BPM)			:	193
+
+
+GENERIQUE_:
+{
+	"process" : "PROCESS",
+	"params" :
+		{
+			"nomParam1" : "PARAM1",
+			"nomParam2" : "PARAM2"
+		}
+}
+
+EXEMPLE_5
+{
+	"process" : "notifyStartSession",
+	"params" :
+		{
+		}
+}
+
+EXEMPLE_6
+{
+	"process" : "notifyEndSession",
+	"params" :
+		{
+		}
+}
+
+EXEMPLE_7.1
+{
+	"process" : "notifyConnection",
+	"params" :
+		{
+			"sensor_id" : "1",
+			"sensor_type" : "dossard"
+		}
+}
+
+EXEMPLE_7.2
+{
+	"process" : "notifyConnection",
+	"params" :
+		{
+			"sensor_id" : "1",
+			"sensor_type" : "brassard"
+		}
+}
+
+EXEMPLE_8.1
+{
+	"process" : "notifyDisconnection",
+	"params" :
+		{
+			"sensor_id" : "1",
+			"sensor_type" : "dossard"
+		}
+}
+
+EXEMPLE_8.2
+{
+	"process" : "notifyDisconnection",
+	"params" :
+		{
+			"sensor_id" : "1",
+			"sensor_type" : "brassard"
+		}
+}
+
+
+EXEMPLE_9
+	{
+	"process" : "informSensors",
+	"params" :
+		{
+			"capteurs" :
+				[
+					{
+						"sensor_id" : "1",
+						"sensor_type" : "brassard"
+					},
+					{
+						"sensor_id" : "2",
+						"sensor_type" : "brassard"
+					},
+					{
+						"sensor_id" : "3",
+						"sensor_type" : "brassard"
+					},
+					{
+						"sensor_id" : "1",
+						"sensor_type" : "dossard"
+					},
+					{
+						"sensor_id" : "3",
+						"sensor_type" : "dossard"
+					}
+				]
+		}
+}
+
+EXEMPLE_10
+{
+	"process" : "saveSession",
+	"params" :
+		{
+			"datas" :
+				{
+					"totalSessionTimeInSec" : 11230,
+				
+
+					"positionDatas" :
+					{
+						"1":{
+							"sensor_id" : "1",
+							"totalDistance" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"x" : 5.12,
+									"y" : 3.37
+								}
+							]
+						},
+						"2":{
+							"sensor_id" : "2",
+							"totalDistance" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"x" : 5.12,
+									"y" : 3.37
+								}
+							]
+						},
+						"3":{
+							"sensor_id" : "3",
+							"totalDistance" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"x" : 5.12,
+									"y" : 3.37
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"x" : 5.12,
+									"y" : 3.37
+								}
+							]
+						}
+					},
+					"vitesseDatas" :
+					[
+						{
+							"sensor_id" : "1",
+							"averageSpeed" : 50,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"v" : 13.3
+								}
+							]
+						},
+						{
+							"sensor_id" : "2",
+							"averageSpeed" : 50,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"v" : 13.3
+								}
+							]
+						},
+						{
+							"sensor_id" : "3",
+							"averageSpeed" : 50,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"v" : 13.3
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"v" : 13.3
+								}
+							]
+						}
+					],
+					"accelerationEffortDatas" :
+					[
+						{
+							"sensor_id" : "1",
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 150
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 93
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 71
+								}
+							]
+						},
+						{
+							"sensor_id" : "2",
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 150
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 93
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 71
+								}
+							]
+						},
+						{
+							"sensor_id" : "3",
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 150
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 93
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 71
+								}
+							]
+						}
+					],
+					"cardioDatas" :
+					{
+						"1":{
+							"sensor_id" : "1",
+							"bpmMax" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 190
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 191
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 193
+								}
+							]
+						},
+						"2":{
+							"sensor_id" : "2",
+							"bpmMax" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 190
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 191
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 193
+								}
+							]
+						},
+						"3":{
+							"sensor_id" : "3",
+							"bpmMax" : 11230,
+							"results" : 
+							[
+								{
+									"date" : "2017_11_30-22:13:54:700",
+									"valeur" : 190
+								},
+								{
+									"date" : "2017_11_30-22:13:58:800",
+									"valeur" : 191
+								},
+								{
+									"date" : "2017_11_30-22:14:23:300",
+									"valeur" : 193
+								}
+							]
+						}
+					}
+				}
+		}
+}

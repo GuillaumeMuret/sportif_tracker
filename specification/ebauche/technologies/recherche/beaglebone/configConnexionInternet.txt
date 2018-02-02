@@ -1,0 +1,15 @@
+Suivre tuto : https://www.youtube.com/watch?v=fzRVVtGNfj8
+
+A faire à chaque fois que l'on reconnecte la carte au PC :
+
+1) Connecter la BeagleBone au PC.
+2) Aller dans l'IDE Cloud9 : http://beaglebone.local:3000/ide.html
+3) Attendre que la connexion avec la carte se fasse.
+4) Dans le terminal disponible directement dans l'IDE lancer la commande : sudo /sbin/route add default gw 192.168.7.1
+5) Mot de passe = temppwd
+6) Faire ensuite cd /etc
+7) A partir de ce répertoire lancer : sudo nano resolv.conf
+8) Une fois le fichier resolf.conf ouvert dans le terminal, écrire : nameserver 8.8.8.8 dedans
+9) Ctrl X
+10) Y + enter
+11) Tester la commande : ping www.google.com et ça doit marcher.

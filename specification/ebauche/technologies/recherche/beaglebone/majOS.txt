@@ -1,0 +1,1 @@
+Suivre le tuto : https://medium.com/@zageollc/updating-the-software-image-on-a-beaglebone-black-fc73ffcc700

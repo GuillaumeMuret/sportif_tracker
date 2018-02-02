@@ -1,0 +1,10 @@
+﻿@startuml
+title Contexte Logique
+
+node SAE as SAE
+
+actor Entraineur
+
+Entraineur -right- SAE :  → demarrerTrack&Roll()\n→ arreterTrack&Roll()\n→ seConnecter()\n→ seDeconnecter()\n→ creerJoueur()\n→ supprimerJoueur()\n→ lancerEnregistrement()\n→ arreterEnregistrement()\n→ consulterSession()\n→ consulterJoueur()\n→ consulterStatistique()\n→ selectionnerCapteur()\n→ appuyerBoutonCarte()\n← allumerLED(etat)\n← afficherEcran(ecran)
+
+@enduml

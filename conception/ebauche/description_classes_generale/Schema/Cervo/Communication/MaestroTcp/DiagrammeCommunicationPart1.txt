@@ -1,0 +1,129 @@
+@startuml
+
+class Brain <<S, Singleton>> {
+
+}
+
+class MaestroCommunication <<S, Singleton>> {
+	- MaestroCommunication(Brain, ICommunicationState)
+	+ getInstance(Brain, ICommunicationState) : MaestroCommunication
+	- readComMessage() : String
+	+ launchReadThread() : void
+	+ relaunchCommunication(Brain, ICommunicationState) : void
+	- communicationState : ICommunicationState
+	- bluetoothPostman : MaestroPostman
+	- armbandDistributor : MaestroDistributor
+	- brain : Brain
+	- instance : MaestroCommunication
+}
+
+class SocketMaestroCommunication {
+	- bufferedWriter : BufferedWriter
+	- bufferedReader : BufferedReader
+	- writingThread : Write
+	- mySocket : Socket
+	+ SocketMaestroCommunication(Socket)
+	+ writeMessage(String) : void
+	+ readMessage() : SocketMessage
+	+ getStateSocket() : StateSocket
+}
+
+class SocketMaestroConnexion {
+	- maestroPostman : MaestroPostman
+	+ SocketMaestroConnexion(MaestroPostman)
+	+ getStateSocket() : StateSocket
+	+ QUEUE_WAIT : int = 100
+}
+
+class Write <<T, Thread>> {
+	+ Write(String)
+	+ run() : void
+	- messageToSend : String
+}
+
+class SetUpConnexion <<T, Thread>>{
+	+ run() : void
+}
+	
+class MaestroDistributor <<S, Singleton>> {
+	- MaestroDistributor()
+	+ getInstance() : MaestroDistributor
+	+ dispatch(MaestroMessage) : ArrayList<ActionForBrain>
+	- commands : HashMap<String, ICommandFromMaestro>
+	- instance : MaestroDistributor
+}
+
+interface ICommandFromMaestro{
+	+ convertAndGetAction(MaestroMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessAskSensors{
+	+ convertAndGetAction(MaestroMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessDeleteSaving{
+	+ convertAndGetAction(MaestroMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessStartSaving{
+	+ convertAndGetAction(MaestroMessage) : ArrayList<ActionForBrain>
+}
+
+class ProcessStopSaving{
+	+ convertAndGetAction(MaestroMessage) : ArrayList<ActionForBrain>
+}
+
+class ReadThread <<T, Thread>> {
+	- manageReading() : void
+	+ run() : void
+	- receivedMessage : String
+}
+
+class MaestroPostman <<S, Singleton>> {
+	- MaestroPostman(MaestroCommunication)
+	+ getInstance(MaestroCommunication) : MaestroPostman
+	+ readMessage() : String
+	+ getStateSocket : StateSocket
+	+ notifyNewSocketConnected(SocketMaestroCommunication) : void
+	+ removeSocketCommunication() : void
+	+ isSocketCommunicationNeeded() : boolean
+	- serverSocketCommunication : SocketMaestroCommunication
+	- armbandCommunication : MaestroCommunication
+	- instance : MaestroPostman
+}
+
+abstract AbstractSocket{
+	# stateSocket : StateSocket
+	# ENCODAGE : String = "UTF-8"
+}
+
+enum StateSocket{
+	+ CONNEXION : StateSocket
+	+ CONNECTED : StateSocket
+ 	+ ERROR : StateSocket
+}
+
+MaestroCommunication -left-"1" ReadThread
+MaestroCommunication --"1" MaestroDistributor
+MaestroCommunication --"1" MaestroPostman
+
+MaestroDistributor -down-"*" ICommandFromMaestro
+
+ProcessAskSensors .left. ICommandFromMaestro
+ProcessDeleteSaving .down. ICommandFromMaestro
+ProcessStartSaving .up. ICommandFromMaestro
+ProcessStopSaving .up. ICommandFromMaestro
+
+MaestroPostman --"1" SocketMaestroConnexion
+MaestroPostman --"1" SocketMaestroCommunication
+
+SocketMaestroConnexion -- SetUpConnexion
+
+SocketMaestroCommunication -- Write
+MaestroCommunication -right-"1" Brain
+
+AbstractSocket <|-up- SocketMaestroCommunication
+AbstractSocket <|-up- SocketMaestroConnexion
+AbstractSocket -right- StateSocket
+
+@enduml

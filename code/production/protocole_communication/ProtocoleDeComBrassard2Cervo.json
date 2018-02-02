@@ -1,0 +1,31 @@
+De_BRASSARD_vers_CERVO
+
+version_1.0
+
+Transmission_des_données
+
+
+//Format des pulsations cardiaques				:	1
+//Format des données accélérométriques			:	
+//Format des données gyroscopiques				:
+
+
+GENERIQUE_:
+{
+	"process" : "PROCESS",
+	"params" :
+		{
+			"nomParam1" : "PARAM1",
+			"nomParam2" : "PARAM2"
+		}
+}
+
+EXEMPLE_1
+{
+	"process" : "sendBpm",
+	"params" :
+		{
+			"sensorId" : "1",
+			"bpmForTenSec" : "1"
+		}
+}

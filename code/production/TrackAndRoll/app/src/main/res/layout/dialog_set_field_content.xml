@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/dialog_set_name_session_et_text_size"
+                android:textColor="@color/colorRed"
+                android:text="@string/dialog_set_field_longueur"
+                />
+
+            <EditText
+                android:id="@+id/etSetLongueur"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@android:color/transparent"
+                android:hint="@string/dialog_set_field_longueur_hint"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorTextHint"
+                android:textSize="@dimen/dialog_set_name_session_et_text_size"
+                android:text="60"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/dialog_set_name_session_et_text_size"
+                android:textColor="@color/colorRed"
+                android:text="@string/dialog_set_field_larger"
+                />
+
+            <EditText
+                android:id="@+id/etSetLarger"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@android:color/transparent"
+                android:hint="@string/dialog_set_field_larger_hint"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorTextHint"
+                android:textSize="@dimen/dialog_set_name_session_et_text_size"
+                android:text="30"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

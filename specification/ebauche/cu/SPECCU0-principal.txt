@@ -1,0 +1,20 @@
+@startuml
+
+(Administrer Track&Roll et gérer les mesures sur les performances des sportifs) as (Cup)
+:Entraineur: as Ent
+
+(Cup) -left- Ent
+
+(Se connecter) as (Cu1)
+(Administrer les joueurs) as (Cu2)
+(Administrer les capteurs) as (Cu3)
+(Consulter les sessions) as (Cu4)
+(Administrer le compte utilisateur) as (Cu5)
+
+(Cup) .up.> (Cu1) : <<include>>
+(Cup) .up.> (Cu2) : <<include>>
+(Cup) .down.> (Cu3) : <<include>>
+(Cup) .down.> (Cu4) : <<include>>
+(Cup) .down.> (Cu5) : <<include>>
+
+@enduml

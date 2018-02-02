@@ -1,0 +1,47 @@
+﻿@startuml
+hide circle
+
+package Cervo{
+    class "<u>brainBeagle:BrainBeagle</u>\n<<active>>" as BrainBeagle
+    class "<u>localisateur:Localisateur</u>" as Localisateur
+    class "<u>memory:Memory</u>" as Memory
+
+    class "<u>dossard[]:Dossard</u>\n<<active>>" as Dossard
+    class "<u>rtls:RTLS</u>" as RTLS
+}
+
+package CaptoBeagle{
+	class "<u>button:Button</u>" as Button
+	class "<u>led:LED</u>\n<<active>>" as LED
+}
+
+package CaptoDossard #99FF99{
+    class "<u>rfid[]:RFID</u>" as RFID #99FF99
+}
+
+package CaptoBrassard{
+    class "<u>brassard[]:Brassard</u>\n<<active>>" as Brassard
+    class "<u>accelereogyro[]:AccelereoGyro</u>" as AccelereoGyro
+    class "<u>cardio[]:Cardio</u>" as Cardio
+}
+
+package Maestro{
+    class "<u>ihm:IHM</u>\n<<active>>" as IHM
+}
+
+
+
+Brassard <-down- AccelereoGyro
+Brassard <-down- Cardio
+Brassard <--> BrainBeagle
+
+RFID --> RTLS
+RTLS <--> Dossard
+Dossard <-down-> BrainBeagle
+
+BrainBeagle <--> Localisateur
+BrainBeagle <--> Memory
+BrainBeagle <-- Button
+BrainBeagle --> LED
+BrainBeagle <-left-> IHM
+@enduml

@@ -1,0 +1,41 @@
+
+
+- Liste des CU Principaux :
+*CU-P Administrer Track&Roll et gérer les mesures sur les performances des sportifs
+*CU1 Se connecter
+*CU2 Administrer les joueurs
+*CU3 Administrer les capteurs
+*CU4 Consulter les sessions
+*CU5 Administrer le compte utilisateur
+
+- Liste des CU Secondaires (à numéroter) :
+*CU6 Administrer un joueur
+*CU7 Créer un nouveau profil joueur
+*CU8 Supprimer des joueurs
+*CU9 Modifier le profil d’un joueur
+*CU10 Consulter une statistique
+*CU11 Lancer une session d'enregistrement
+*CU12 Consulter un joueur
+
+
+
+- Liste des Ecrans nommés dans les CUs :
+Screen_Help
+Screen_Splash
+Screen_Login
+Screen_Players
+Screen_PlayerProfile
+Screen_AddNewPlayer
+Screen_CustomPlayer
+Screen_DataX
+Screen_SensorsManager
+Screen_RunningSession
+Screen_SessionsManager
+Screen_MyAccount
+
+
+- Liste des PopUp nommés dans les CUs :
+*Dialog_TargetDisconnected
+
+-Liste des constantes :
+*TW_SCREEN_SPLASH 
